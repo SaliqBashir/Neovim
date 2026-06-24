@@ -2,10 +2,22 @@
 
 My personal Neovim configuration based on Kickstart.nvim.
 
-## Prerequisites
+## Prerequisites Linux
+(Debian / Ubuntu)
 
-### Linux (Arch / EndeavourOS)
+```sh
+sudo apt update
 
+sudo apt install -y \
+  neovim git gh \
+  build-essential unzip curl \
+  ripgrep fd-find \
+  tree-sitter-cli \
+  nodejs npm \
+  python3 python3-pip python3-venv \
+  wl-clipboard
+```
+(Arch / EndeavourOS)
 ```sh
 sudo pacman -S --needed \
   neovim git github-cli \
@@ -17,19 +29,7 @@ sudo pacman -S --needed \
   wl-clipboard
 ```
 
-Required:
-
-* `tree-sitter-cli` for Treesitter parser installation
-* `nodejs` and `npm` for Mason-installed language servers such as HTML and CSS LSPs
-* `ripgrep` and `fd` for Telescope
-* `wl-clipboard` for system clipboard support
-
-Optional:
-
-* JetBrains Mono Nerd Font (recommended)
-
-### macOS
-
+## macOS
 ```sh
 brew install \
   neovim git gh \
@@ -38,6 +38,16 @@ brew install \
   node npm \
   python
 ```
+Required:
+
+* `tree-sitter-cli` for Treesitter parser installation
+* `nodejs` and `npm` for Mason-installed language servers
+* `ripgrep` and `fd` for Telescope
+* `wl-clipboard` for system clipboard integration
+
+Optional:
+
+* JetBrains Mono Nerd Font (recommended)
 
 ## Installation
 
