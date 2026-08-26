@@ -180,6 +180,16 @@ A collection of the default keymaps I use most often, along with a few custom ma
 | `R` | Refresh tree |
 | `Backspace` | Go to parent directory |
 
+# Harpoon
+| Key | Action |
+|------|--------|
+| `<leader>a` | Add current file to Harpoon list |
+| `<leader>r` | Toggle Harpoon quick menu |
+| `<leader>1` | Jump to file 1 |
+| `<leader>2` | Jump to file 2 |
+| `<leader>3` | Jump to file 3 |
+| `<leader>4` | Jump to file 4 |
+
 # Commands
 
 | Command | Action |
