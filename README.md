@@ -19,7 +19,6 @@ A personal Neovim configuration built on top of [Kickstart.nvim](https://github.
   - [Neo-tree](#neo-tree)
   - [Harpoon](#harpoon)
 - [Commands](#commands)
-- [License](#license)
 
 ---
 
