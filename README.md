@@ -1,14 +1,34 @@
 # Neovim Configuration
 
-My personal Neovim configuration based on Kickstart.nvim.
+A personal Neovim configuration built on top of [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), extended with LSP tooling, autoformatting, fuzzy finding, and file navigation via Harpoon.
 
-## Prerequisites 
-### Linux
-(Debian / Ubuntu)
+---
+
+## Table of Contents
+
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Updating](#updating)
+- [Project Structure](#project-structure)
+- [Keymaps](#keymaps)
+  - [Modes](#modes)
+  - [Movement](#movement)
+  - [Editing](#editing)
+  - [Visual Mode](#visual-mode)
+  - [Windows](#windows)
+  - [Neo-tree](#neo-tree)
+  - [Harpoon](#harpoon)
+- [Commands](#commands)
+- [License](#license)
+
+---
+
+## Prerequisites
+
+### Linux (Debian / Ubuntu)
 
 ```sh
 sudo apt update
-
 sudo apt install -y \
   neovim git gh \
   build-essential unzip curl \
@@ -18,7 +38,9 @@ sudo apt install -y \
   python3 python3-pip python3-venv \
   wl-clipboard
 ```
-(Arch)
+
+### Linux (Arch)
+
 ```sh
 sudo pacman -S --needed \
   neovim git github-cli \
@@ -31,6 +53,7 @@ sudo pacman -S --needed \
 ```
 
 ### macOS
+
 ```sh
 brew install \
   neovim git gh \
@@ -39,16 +62,18 @@ brew install \
   node npm \
   python
 ```
-Required:
 
-* `tree-sitter-cli` for Treesitter parser installation
-* `nodejs` and `npm` for Mason-installed language servers
-* `ripgrep` and `fd` for Telescope
-* `wl-clipboard` for system clipboard integration
+### Dependency Reference
 
-Optional:
+| Dependency | Purpose | Required |
+|---|---|---|
+| `tree-sitter-cli` | Installing Treesitter parsers | Yes |
+| `nodejs` / `npm` | Mason-installed language servers | Yes |
+| `ripgrep` / `fd` | Telescope live grep and file search | Yes |
+| `wl-clipboard` | System clipboard integration | Yes |
+| JetBrains Mono Nerd Font | Icon rendering in UI plugins | Recommended |
 
-* JetBrains Mono Nerd Font (recommended)
+---
 
 ## Installation
 
@@ -56,7 +81,9 @@ Optional:
 git clone https://github.com/SaliqBashir/Neovim ~/.config/nvim && nvim
 ```
 
-On first launch, Lazy.nvim and Mason will automatically install plugins, Treesitter parsers, and language servers.
+On first launch, `lazy.nvim` and Mason will automatically install all plugins, Treesitter parsers, and language servers. This may take a minute — check progress with `:Lazy` and `:Mason`.
+
+---
 
 ## Updating
 
@@ -65,113 +92,138 @@ cd ~/.config/nvim
 git pull
 ```
 
-Inside Neovim:
+Then inside Neovim:
 
 ```vim
 :Lazy sync
 :MasonUpdate
 :TSUpdate
 ```
-# Neovim Keymaps
 
-A collection of the default keymaps I use most often, along with a few custom mappings tailored to my workflow.
+---
 
-## Modes
+## Project Structure
+
+```
+.
+├── init.lua                    -- Entry point: options, keymaps, plugin specs
+├── lazy-lock.json               -- Pinned plugin versions
+├── lua/
+│   ├── custom/
+│   │   └── plugins/
+│   │       └── init.lua         -- User-added plugins (currently inactive; see note below)
+│   └── kickstart/
+│       ├── health.lua
+│       └── plugins/
+│           ├── autopairs.lua
+│           ├── debug.lua
+│           ├── gitsigns.lua
+│           ├── indent_line.lua
+│           ├── lint.lua
+│           └── neo-tree.lua
+├── doc/
+└── README.md
+```
+
+> **Note:** `{ import = 'custom.plugins' }` is commented out in `init.lua` by default. Uncomment it to enable plugins declared under `lua/custom/plugins/`.
+
+---
+
+## Keymaps
+
+### Modes
 
 | Key | Action |
-|------|--------|
+|---|---|
 | `i` | Enter Insert mode |
 | `v` | Enter Visual mode |
 | `jj` | Return to Normal mode |
 
-# Movement
+### Movement
 
-## Character & Word
+**Character & Word**
 
 | Key | Action |
-|------|--------|
-| `h` | Move left |
-| `j` | Move down |
-| `k` | Move up |
-| `l` | Move right |
+|---|---|
+| `h` / `j` / `k` / `l` | Left / Down / Up / Right |
 | `w` | Jump to next word |
 | `b` | Jump to previous word |
 
-## Line Navigation
+**Line Navigation**
 
 | Key | Action |
-|------|--------|
+|---|---|
 | `0` | Beginning of line |
 | `$` | End of line |
 
-## File Navigation
+**File Navigation**
 
 | Key | Action |
-|------|--------|
+|---|---|
 | `gg` | First line of file |
 | `G` | Last line of file |
 
-## Paragraph Navigation
+**Paragraph Navigation**
 
 | Key | Action |
-|------|--------|
+|---|---|
 | `{` | Previous paragraph |
 | `}` | Next paragraph |
 
-# Editing
+### Editing
 
-## Yank
+**Yank**
 
 | Key | Action |
-|------|--------|
+|---|---|
 | `yy` | Yank current line |
 | `yap` | Yank around paragraph |
 | `[count]yk` | Yank `count` lines above |
 
-## Delete
+**Delete**
 
 | Key | Action |
-|------|--------|
+|---|---|
 | `dd` | Delete current line |
 | `dap` | Delete around paragraph |
 | `[count]dk` | Delete `count` lines above |
 
-## Paste
+**Paste**
 
 | Key | Action |
-|------|--------|
+|---|---|
 | `p` | Paste below |
 | `P` | Paste above |
 
-## Undo
+**Undo**
 
 | Key | Action |
-|------|--------|
+|---|---|
 | `u` | Undo |
 
-# Visual Mode
+### Visual Mode
 
 | Key | Action |
-|------|--------|
+|---|---|
 | `v` | Start character selection |
 | `V` | Start line selection |
 | `<movement>` | Extend selection |
 
-# Windows
+### Windows
 
 | Key | Action |
-|------|--------|
+|---|---|
 | `<leader>h` | Focus left window |
 | `<leader>j` | Focus lower window |
 | `<leader>k` | Focus upper window |
 | `<leader>l` | Focus right window |
 
-# Neo-tree
+### Neo-tree
 
 | Key | Action |
-|------|--------|
+|---|---|
 | `<leader>e` | Toggle Neo-tree |
-| `Enter` | Open file / Expand or collapse directory |
+| `Enter` | Open file / expand or collapse directory |
 | `a` | Add file or directory (`/` suffix creates a directory) |
 | `r` | Rename |
 | `d` | Delete |
@@ -180,9 +232,12 @@ A collection of the default keymaps I use most often, along with a few custom ma
 | `R` | Refresh tree |
 | `Backspace` | Go to parent directory |
 
-# Harpoon
+### Harpoon
+
+Quick-access file list for jumping between actively edited files without a fuzzy finder.
+
 | Key | Action |
-|------|--------|
+|---|---|
 | `<leader>a` | Add current file to Harpoon list |
 | `<leader>r` | Toggle Harpoon quick menu |
 | `<leader>1` | Jump to file 1 |
@@ -190,10 +245,12 @@ A collection of the default keymaps I use most often, along with a few custom ma
 | `<leader>3` | Jump to file 3 |
 | `<leader>4` | Jump to file 4 |
 
-# Commands
+---
+
+## Commands
 
 | Command | Action |
-|---------|--------|
+|---|---|
 | `:w` | Save |
 | `:q` | Quit |
 | `:wq` | Save and quit |
@@ -201,3 +258,5 @@ A collection of the default keymaps I use most often, along with a few custom ma
 | `:wa` | Save all files |
 | `:qa` | Quit all windows |
 | `:qa!` | Force quit all |
+
+---
