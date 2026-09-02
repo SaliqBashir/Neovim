@@ -759,7 +759,8 @@ require('lazy').setup({
       signature = { enabled = true },
     },
   },
-
+  -- THEMES
+  --[[
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -781,6 +782,21 @@ require('lazy').setup({
       vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
+    ]]
+
+{ -- Gruvbox colorscheme
+  'ellisonleao/gruvbox.nvim',
+  priority = 1000,
+  config = function()
+    require('gruvbox').setup {
+      contrast = 'hard',
+      transparent_mode = false,
+    }
+
+    vim.cmd.colorscheme 'gruvbox'
+  end,
+},
+  -- END THEMES
 
   -- Highlight todo, notes, etc in comments
   {
