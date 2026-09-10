@@ -90,7 +90,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('i', 'jj', '<Esc>')
 vim.keymap.set('n', 'i', 'a')
 vim.keymap.set('i', '<D-CR>', '<Esc>$a')
-
+vim.keymap.set('n', 't', '<C-r>', { desc = 'Redo' })
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged' }, {
   pattern = '*',
   command = 'silent! write',
