@@ -1,6 +1,6 @@
 # Neovim Configuration
 
-A personal Neovim configuration built on top of [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), extended with LSP tooling, autoformatting, fuzzy finding, and file navigation via Harpoon.
+A personal Neovim configuration built on top of [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), extended with LSP tooling, autoformatting, fuzzy finding, in-editor image rendering, and file navigation via Harpoon.
 
 ---
 
@@ -10,6 +10,7 @@ A personal Neovim configuration built on top of [Kickstart.nvim](https://github.
 - [Installation](#installation)
 - [Updating](#updating)
 - [Project Structure](#project-structure)
+- [Image Preview](#image-preview)
 - [Keymaps](#keymaps)
   - [Modes](#modes)
   - [Movement](#movement)
@@ -35,7 +36,8 @@ sudo apt install -y \
   tree-sitter-cli \
   nodejs npm \
   python3 python3-pip python3-venv \
-  wl-clipboard
+  wl-clipboard \
+  imagemagick luarocks
 ```
 
 ### Linux (Arch)
@@ -48,7 +50,8 @@ sudo pacman -S --needed \
   tree-sitter tree-sitter-cli \
   nodejs npm \
   python python-pip \
-  wl-clipboard
+  wl-clipboard \
+  imagemagick luarocks
 ```
 
 ### macOS
@@ -59,7 +62,8 @@ brew install \
   ripgrep fd \
   tree-sitter tree-sitter-cli \
   node npm \
-  python
+  python \
+  imagemagick luarocks
 ```
 
 ### Dependency Reference
@@ -70,6 +74,8 @@ brew install \
 | `nodejs` / `npm` | Mason-installed language servers | Yes |
 | `ripgrep` / `fd` | Telescope live grep and file search | Yes |
 | `wl-clipboard` | System clipboard integration | Yes |
+| `imagemagick` / `luarocks` | Magick bindings for `image.nvim` | Yes |
+| Kitty-graphics-protocol terminal (Kitty, Ghostty, WezTerm) | Renders images inline via `image.nvim` | Yes |
 | JetBrains Mono Nerd Font | Icon rendering in UI plugins | Recommended |
 
 ---
@@ -125,6 +131,19 @@ Then inside Neovim:
 ```
 
 > **Note:** `{ import = 'custom.plugins' }` is commented out in `init.lua` by default. Uncomment it to enable plugins declared under `lua/custom/plugins/`.
+
+---
+
+## Image Preview
+
+[`3rd/image.nvim`](https://github.com/3rd/image.nvim) renders images directly inside the editor using the Kitty graphics protocol — no external viewer needed.
+
+- **Backend:** `kitty` — requires a terminal that implements the Kitty graphics protocol (Kitty, Ghostty, WezTerm, etc.). It will not render in terminals without protocol support (e.g. Terminal.app, plain iTerm2).
+- **Where it renders:**
+  - Image files opened directly in a buffer (`.png`, `.jpg`, etc.)
+  - Inline image links in Markdown files (`![alt](image.png)`), including remote images (downloaded automatically)
+- **Sizing:** images scale to `100%` of the containing window (`max_width_window_percentage` / `max_height_window_percentage`), so they fill the available buffer space rather than using a fixed cell size.
+- **Dependencies:** built on top of `vhyrro/luarocks.nvim`, which compiles Lua bindings against `imagemagick` — make sure both are installed (see [Prerequisites](#prerequisites)) before `:Lazy sync`.
 
 ---
 
