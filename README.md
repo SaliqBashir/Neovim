@@ -111,11 +111,16 @@ Then inside Neovim:
 ```
 .
 ├── init.lua                    -- Entry point: options, keymaps, plugin specs
-├── lazy-lock.json               -- Pinned plugin versions
+├── lazy-lock.json              -- Pinned plugin versions
 ├── lua/
 │   ├── custom/
-│   │   └── plugins/
-│   │       └── init.lua         -- User-added plugins
+│   │   └── plugins/            -- User-added plugins
+│   │       ├── autotag.lua
+│   │       ├── cord.lua
+│   │       ├── gruvbox.lua
+│   │       ├── harpoon.lua
+│   │       ├── image.lua
+│   │       └── init.lua
 │   └── kickstart/
 │       ├── health.lua
 │       └── plugins/
