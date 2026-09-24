@@ -10,7 +10,6 @@ A personal Neovim configuration built on top of [Kickstart.nvim](https://github.
 - [Installation](#installation)
 - [Updating](#updating)
 - [Project Structure](#project-structure)
-- [Image Preview](#image-preview)
 - [Keymaps](#keymaps)
   - [Modes](#modes)
   - [Movement](#movement)
@@ -116,7 +115,7 @@ Then inside Neovim:
 ├── lua/
 │   ├── custom/
 │   │   └── plugins/
-│   │       └── init.lua         -- User-added plugins (currently inactive; see note below)
+│   │       └── init.lua         -- User-added plugins
 │   └── kickstart/
 │       ├── health.lua
 │       └── plugins/
@@ -129,21 +128,6 @@ Then inside Neovim:
 ├── doc/
 └── README.md
 ```
-
-> **Note:** `{ import = 'custom.plugins' }` is commented out in `init.lua` by default. Uncomment it to enable plugins declared under `lua/custom/plugins/`.
-
----
-
-## Image Preview
-
-[`3rd/image.nvim`](https://github.com/3rd/image.nvim) renders images directly inside the editor using the Kitty graphics protocol — no external viewer needed.
-
-- **Backend:** `kitty` — requires a terminal that implements the Kitty graphics protocol (Kitty, Ghostty, WezTerm, etc.). It will not render in terminals without protocol support (e.g. Terminal.app, plain iTerm2).
-- **Where it renders:**
-  - Image files opened directly in a buffer (`.png`, `.jpg`, etc.)
-  - Inline image links in Markdown files (`![alt](image.png)`), including remote images (downloaded automatically)
-- **Sizing:** images scale to `100%` of the containing window (`max_width_window_percentage` / `max_height_window_percentage`), so they fill the available buffer space rather than using a fixed cell size.
-- **Dependencies:** built on top of `vhyrro/luarocks.nvim`, which compiles Lua bindings against `imagemagick` — make sure both are installed (see [Prerequisites](#prerequisites)) before `:Lazy sync`.
 
 ---
 

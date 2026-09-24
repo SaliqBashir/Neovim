@@ -8,18 +8,8 @@
     3. Keymaps
     4. Autocommands
     5. lazy.nvim bootstrap
-    6. Plugins
-         6.1 Colorscheme
-         6.2 UI / statusline / which-key / todo-comments
-         6.3 Editing (mini.nvim, autopairs, autotag, harpoon, guess-indent)
-         6.4 Treesitter
-         6.5 LSP
-         6.6 Formatting (conform.nvim)
-         6.7 Completion (blink.cmp)
-         6.8 Fuzzy finder (telescope)
-         6.9 Images (image.nvim)
-         6.10 Misc (cord.nvim, discord rich presence)
-         6.11 Kickstart extras (indent_line, lint, autopairs, neo-tree)
+    6. Plugins (kickstart base; user additions in lua/custom/plugins/)
+         Custom: gruvbox, autotag, harpoon, image, cord (via { import = 'custom.plugins' })
     7. lazy.nvim setup
 ===================================================================== ]]
 
@@ -164,20 +154,7 @@ rtp:prepend(lazypath)
 -- To update plugins:       :Lazy update
 require('lazy').setup({
 
-  -- -----------------------------------------------------------------------
-  -- 6.1 Colorscheme
-  -- -----------------------------------------------------------------------
-  {
-    'ellisonleao/gruvbox.nvim',
-    priority = 1000, -- load before other start plugins
-    config = function()
-      require('gruvbox').setup {
-        contrast = 'hard',
-        transparent_mode = false,
-      }
-      vim.cmd.colorscheme 'gruvbox'
-    end,
-  },
+  -- NOTE: Colorscheme lives in lua/custom/plugins/gruvbox.lua (was kickstart's tokyonight.nvim).
 
   -- -----------------------------------------------------------------------
   -- 6.2 UI: statusline, which-key, todo-comments
@@ -262,30 +239,9 @@ require('lazy').setup({
   -- -----------------------------------------------------------------------
   { 'NMAC427/guess-indent.nvim', opts = {} },
 
-  { -- Auto-close and auto-rename HTML/JSX tags as you type
-    'windwp/nvim-ts-autotag',
-    event = { 'BufReadPost', 'BufNewFile' },
-    ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'vue', 'svelte' },
-    opts = {},
-  },
+  -- NOTE: nvim-ts-autotag lives in lua/custom/plugins/autotag.lua.
 
-  { -- Quick file/mark navigation
-    'ThePrimeagen/harpoon',
-    branch = 'harpoon2',
-    dependencies = { 'nvim-lua/plenary.nvim' }, -- already pulled in by telescope, declared explicitly anyway
-    config = function()
-      local harpoon = require 'harpoon'
-      harpoon:setup()
-
-      vim.keymap.set('n', '<leader>a', function() harpoon:list():append() end, { desc = 'Harpoon Add File' })
-      vim.keymap.set('n', '<leader>r', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = 'Harpoon Quick Menu' })
-
-      vim.keymap.set('n', '<leader>1', function() harpoon:list():select(1) end)
-      vim.keymap.set('n', '<leader>2', function() harpoon:list():select(2) end)
-      vim.keymap.set('n', '<leader>3', function() harpoon:list():select(3) end)
-      vim.keymap.set('n', '<leader>4', function() harpoon:list():select(4) end)
-    end,
-  },
+  -- NOTE: harpoon lives in lua/custom/plugins/harpoon.lua.
 
   -- -----------------------------------------------------------------------
   -- 6.4 Treesitter
@@ -656,34 +612,8 @@ require('lazy').setup({
     end,
   },
 
-  -- -----------------------------------------------------------------------
-  -- 6.9 Images
-  -- -----------------------------------------------------------------------
-  {
-    '3rd/image.nvim',
-    dependencies = { 'vhyrro/luarocks.nvim' }, -- needed for magick bindings
-    opts = {
-      backend = 'kitty',
-      integrations = {
-        markdown = {
-          enabled = true,
-          clear_in_insert_mode = false,
-          download_remote_images = true,
-          only_render_image_at_cursor = false,
-          floating_windows = false,
-        },
-      },
-      max_width_window_percentage = 100,
-      max_height_window_percentage = 100,
-      window_overlap_clear_enabled = true,
-      window_overlap_clear_ft_ignore = { 'cmp_menu', 'cmp_docs', '' },
-    },
-  },
-
-  -- -----------------------------------------------------------------------
-  -- 6.10 Misc
-  -- -----------------------------------------------------------------------
-  { 'vyfor/cord.nvim', opts = {} }, -- Discord rich presence
+  -- NOTE: image.nvim lives in lua/custom/plugins/image.lua.
+  -- NOTE: cord.nvim lives in lua/custom/plugins/cord.lua.
 
   -- -----------------------------------------------------------------------
   -- 6.11 Kickstart extras
@@ -696,8 +626,8 @@ require('lazy').setup({
   require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommended keymaps
 
-  -- To add your own plugins, create lua/custom/plugins/*.lua and uncomment:
-  -- { import = 'custom.plugins' },
+  -- Custom plugins are imported from lua/custom/plugins/*.lua
+  { import = 'custom.plugins' },
   --
   -- See `:help lazy.nvim-🔌-plugin-spec`, or `<leader>sh` then `lazy.nvim-plugin`
   -- (resume with `<leader>sr`).
