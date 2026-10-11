@@ -42,12 +42,11 @@ A personal Neovim configuration built on top of [Kickstart.nvim](https://github.
 ---
 
 ## Installation
-
+Installs the prerequisites, clones this config to `~/.config/nvim`, and syncs plugins.(Without font)
 ```sh
 curl -fsSL https://raw.githubusercontent.com/SaliqBashir/Neovim/main/install.sh | bash
 ```
 
-Installs the prerequisites, clones this config to `~/.config/nvim`, and syncs plugins.
 **Options**
 
 | Flag | Effect |
@@ -56,6 +55,7 @@ Installs the prerequisites, clones this config to `~/.config/nvim`, and syncs pl
 | `--no-config` | Install prerequisites only, leave `~/.config/nvim` alone |
 | `-v`, `--verbose` | Show full command output instead of one line per step |
 
+(With font)
 ```sh
 curl -fsSL https://raw.githubusercontent.com/SaliqBashir/Neovim/main/install.sh | bash -s -- --font
 ```
