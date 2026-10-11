@@ -24,71 +24,48 @@ A personal Neovim configuration built on top of [Kickstart.nvim](https://github.
 
 ## Prerequisites
 
-### Linux (Debian / Ubuntu)
+- **Platforms:** Debian / Ubuntu, Arch, Fedora, macOS and Windows via WSL.
 
-```sh
-sudo apt update
-sudo apt install -y \
-  neovim git gh \
-  build-essential unzip curl \
-  ripgrep fd-find \
-  tree-sitter-cli \
-  nodejs npm \
-  python3 python3-pip python3-venv \
-  wl-clipboard \
-  imagemagick luarocks
-```
-
-### Linux (Arch)
-
-```sh
-sudo pacman -S --needed \
-  neovim git github-cli \
-  gcc make unzip \
-  ripgrep fd \
-  tree-sitter tree-sitter-cli \
-  nodejs npm \
-  python python-pip \
-  wl-clipboard \
-  imagemagick luarocks
-```
-
-### macOS
-
-```sh
-brew install \
-  neovim git gh \
-  ripgrep fd \
-  tree-sitter tree-sitter-cli \
-  node npm \
-  python \
-  imagemagick luarocks
-```
-
-### Dependency Reference
-
-| Dependency | Purpose | Required |
+| Dependency | Purpose | Installed by script |
 |---|---|---|
+| Neovim 0.11+ | Native LSP config, Treesitter `main` branch | Yes |
+| `git`, `gh` | Cloning and updating the config | Yes |
+| C compiler, `make` | Building Treesitter parsers and `telescope-fzf-native` | Yes |
 | `tree-sitter-cli` | Installing Treesitter parsers | Yes |
-| `nodejs` / `npm` | Mason-installed language servers | Yes |
-| `ripgrep` / `fd` | Telescope live grep and file search | Yes |
-| `wl-clipboard` | System clipboard integration | Yes |
-| `imagemagick` / `luarocks` | Magick bindings for `image.nvim` | Yes |
-| Kitty-graphics-protocol terminal (Kitty, Ghostty, WezTerm) | Renders images inline via `image.nvim` | Yes |
-| JetBrains Mono Nerd Font | Icon rendering in UI plugins | Recommended |
+| `nodejs`, `npm` | Mason-installed language servers | Yes |
+| `python3`, `pip` | Python language servers | Yes |
+| `ripgrep`, `fd` | Telescope live grep and file search | Yes |
+| `wl-clipboard` | System clipboard integration (Linux) | Yes |
+| `imagemagick`, `luarocks` | Magick bindings for `image.nvim` | Yes |
+| JetBrains Mono Nerd Font | Icons in UI plugins | `--font` |
 
 ---
 
 ## Installation
 
 ```sh
-git clone https://github.com/SaliqBashir/Neovim ~/.config/nvim && nvim
+curl -fsSL https://raw.githubusercontent.com/SaliqBashir/Neovim/main/install.sh | bash
 ```
 
-On first launch, `lazy.nvim` and Mason will automatically install all plugins, Treesitter parsers, and language servers. This may take a minute — check progress with `:Lazy` and `:Mason`.
+Installs the prerequisites, clones this config to `~/.config/nvim`, and syncs plugins.
+**Options**
+
+| Flag | Effect |
+|---|---|
+| `--font` | Also install JetBrainsMono Nerd Font |
+| `--no-config` | Install prerequisites only, leave `~/.config/nvim` alone |
+| `-v`, `--verbose` | Show full command output instead of one line per step |
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/SaliqBashir/Neovim/main/install.sh | bash -s -- --font
+```
+
+**Safety**
+
+- Only missing packages are installed. Nothing already installed is upgraded, except Neovim if it is older than 0.11.
+- An existing `~/.config/nvim` is never overwritten. A clone of this repo is fast-forwarded; any other config is moved to `~/.config/nvim.bak.<timestamp>`.
 
 ---
-
 ## Updating
 
 ```sh
