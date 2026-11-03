@@ -108,10 +108,15 @@ vim.keymap.set('n', '<leader>k', '<C-w><C-k>', { desc = 'Move focus to the upper
 -- =========================================================================
 -- See `:help lua-guide-autocommands`
 
--- Auto-save on leaving insert mode or when text changes
-vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged' }, {
-  pattern = '*',
-  command = 'silent! write',
+-- Auto-save when leaving insert mode (real, modifiable, named file buffers only)
+vim.api.nvim_create_autocmd('InsertLeave', {
+  group = vim.api.nvim_create_augroup('autosave', { clear = true }),
+  callback = function(ev)
+    local buf = ev.buf
+    if vim.bo[buf].modifiable and vim.bo[buf].modified and vim.bo[buf].buftype == '' and vim.api.nvim_buf_get_name(buf) ~= '' then
+      vim.api.nvim_buf_call(buf, function() vim.cmd 'silent! update' end)
+    end
+  end,
 })
 
 -- Diagnostic display config (`:help vim.diagnostic.Opts`)
