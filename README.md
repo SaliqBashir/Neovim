@@ -1,30 +1,110 @@
 # Neovim Configuration
 
-A personal Neovim configuration built on top of [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim), extended with LSP tooling, autoformatting, fuzzy finding, in-editor image rendering, and file navigation via Harpoon.
+A personal Neovim configuration built on [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim): native LSP, completion, Telescope, Neo-tree, Harpoon, a Gitsigns hunk workflow, and in-editor image rendering. Plugin versions are pinned, and one command installs everything.
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/SaliqBashir/Neovim/main/install.sh | bash
+```
 
 ---
 
 ## Table of Contents
 
+- [Screenshots](#screenshots)
+- [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Updating](#updating)
+- [Optional: Discord presence](#optional-discord-presence)
 - [Project Structure](#project-structure)
 - [Keymaps](#keymaps)
-  - [Modes](#modes)
-  - [Movement](#movement)
-  - [Editing](#editing)
-  - [Visual Mode](#visual-mode)
-  - [Windows](#windows)
-  - [Neo-tree](#neo-tree)
-  - [Harpoon](#harpoon)
 - [Commands](#commands)
+- [License](#license)
+
+---
+
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%">
+      <strong>Editor Workspace</strong>
+      <br/>
+      <img src="https://private-user-images.githubusercontent.com/134050177/693587107-477ad2a9-4fc2-4977-aa47-703f49f5fc72.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTA3LTQ3N2FkMmE5LTRmYzItNDk3Ny1hYTQ3LTcwM2Y0OWY1ZmM3Mi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wMjRjOTRmZDUxMzMwYTc4MTMzN2ViMzg5MjE0ZGEzOTc1YzJmMmZjNWJlNTc3OWY0MjFhNjUwMDczYzNiYTRlJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.-VgKrcrsWdqZONjoNz71DtperjmKr478R8KNpgKu6uQ" width="100%" />
+      <br/>
+      <sub>Neovim layout with Neo-tree.</sub>
+    </td>
+    <td width="50%">
+      <strong>Telescope</strong>
+      <br/>
+      <img src="https://private-user-images.githubusercontent.com/134050177/693587103-2dd88f31-cdc0-4df9-9345-d11030efec16.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTAzLTJkZDg4ZjMxLWNkYzAtNGRmOS05MzQ1LWQxMTAzMGVmZWMxNi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02ODIzNTYwZDRjNWE5ZDY3ZTE2YTgwYzcxMTIxNjYyYWZlOGZiYWJiZDkwNTliODhkZWFhYjQ4ZmZkMzFjNzZiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.PM_Jg7OVUTQsxVn0_nD1bWbZFGKo3ttZN9DpFl1FX_k" width="100%" />
+      <br/>
+      <sub>Fuzzy file finding with live preview and project navigation.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>LSP Integration</strong>
+      <br/>
+      <img src="https://private-user-images.githubusercontent.com/134050177/693587106-f33df460-f984-47a1-8ff3-8684a74edbd2.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTA2LWYzM2RmNDYwLWY5ODQtNDdhMS04ZmYzLTg2ODRhNzRlZGJkMi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01Y2Y4M2FmNzE1MDA0ZGFiMjg4ZGIxM2E1OTQ1ZWZmZjY2YzVkZmQzZDU2NzMyYmNiZmRiOGY3NTJhM2VjYTliJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.Cs3LM5cWTt_kUYFYFoaI-lXV2iiJMmBUbr27o40CpQ8" width="100%" />
+      <br/>
+      <sub>Hover documentation, diagnostics and language intelligence.</sub>
+    </td>
+    <td width="50%">
+      <strong>Which-key</strong>
+      <br/>
+      <img src="https://private-user-images.githubusercontent.com/134050177/693587109-4a4a3c25-1aa2-4c1f-8d34-dccd78640805.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTA5LTRhNGEzYzI1LTFhYTItNGMxZi04ZDM0LWRjY2Q3ODY0MDgwNS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xN2E5ZTg1NWNjMjdjYTk0MTA4YmU1NjUzMTVjYmViZTM1Mzk3ZjQ4MmI1MDUwOWM4YjNjYTM1YTQ2ZTJjNzlmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.1bbBjzJiZZcpYRTZcmu9Ow4hsNtNLPxF7gZcwgBpukM" width="100%" />
+      <br/>
+      <sub>Discoverable keybindings and grouped shortcuts.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <strong>Git Integration</strong>
+      <br/>
+      <img src="https://private-user-images.githubusercontent.com/134050177/693587108-af0533b8-a55c-4e80-a7c7-24ec855ef851.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTA4LWFmMDUzM2I4LWE1NWMtNGU4MC1hN2M3LTI0ZWM4NTVlZjg1MS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04NWFjNTJhMGVjZmMwMzBhNmJlOGFjNzU5N2FhMTQ0ZmJlNDAxNGMzNjRlYWI1YzRiYjc2MzNiYmMzYzYxYTlmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.Y62lACBm6YNwCNWeBY5c3amyJvKs6CAGIGn78Iw2aZ4" width="100%" />
+      <br/>
+      <sub>Gitsigns hunk preview with inline change visualization.</sub>
+    </td>
+    <td width="50%">
+      <strong>Inline Image Rendering</strong>
+      <br/>
+      <img src="https://private-user-images.githubusercontent.com/134050177/693587104-a258a9df-78be-4db5-a495-2307e41b9dcf.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTA0LWEyNThhOWRmLTc4YmUtNGRiNS1hNDk1LTIzMDdlNDFiOWRjZi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kYTBlNGEzMjFjMmU5MmZlYzMwZDNjNjQ1YzdlODM5MDBmOTVkYzM4YjI5Yzk1M2YxYzU5ZmRmZjNiMDI1MjA3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.yHoH2uw4UhmVBky9PtPXaTDyYoSUbxN9sbe4nCgMHJ0" width="100%" />
+      <br/>
+      <sub>Image rendering directly inside Neovim using the Kitty graphics protocol.</sub>
+    </td>
+  </tr>
+</table>
+
+---
+
+## Features
+
+| Area | What's configured |
+|---|---|
+| Base | Kickstart.nvim and `lazy.nvim`, with plugin versions pinned in `lazy-lock.json` |
+| Colorscheme | Gruvbox (hard contrast) |
+| LSP | `nvim-lspconfig` + Mason: `clangd`, `pyright`, `ruff`, `ts_ls`, `html`, `cssls`, `emmet_language_server`, `lua_ls`; progress via `fidget.nvim` |
+| Completion | `blink.cmp` + LuaSnip, with signature help |
+| Syntax | Treesitter (`main` branch), parsers install automatically |
+| Formatting | `conform.nvim`: `stylua` for Lua and Prettier for JS / TS / JSX / TSX (both installed by Mason). Prettier runs on save; `<leader>f` formats on demand, with LSP fallback |
+| Linting | LSP diagnostics, plus `nvim-lint` running `markdownlint` on Markdown (installed by Mason) |
+| Fuzzy finding | Telescope with `fzf-native` and `ui-select` |
+| File tree | Neo-tree |
+| File switching | Harpoon 2 |
+| Git | Gitsigns, with hunk actions under `<leader>g` |
+| Images | `image.nvim` (Kitty graphics backend, ImageMagick CLI processor) |
+| Editing | `mini.ai`, `mini.surround`, autopairs, `nvim-ts-autotag`, `guess-indent`, indent guides |
+| UI | `mini.statusline`, `which-key`, `todo-comments`, Nerd Font icons |
+| Auto-save | Modified file buffers are written on `InsertLeave` and `TextChanged` |
+| Extras | Cord (Discord Rich Presence), opt-in |
 
 ---
 
 ## Prerequisites
 
-- **Platforms:** Debian / Ubuntu, Arch, Fedora, macOS and Windows via WSL.
+- **Platforms:** Debian / Ubuntu (`apt`), Arch (`pacman`), Fedora (`dnf`), macOS (Homebrew), and Windows via WSL.
+- **Terminal:** one that implements the Kitty graphics protocol if you want inline images (Ghostty, Kitty, WezTerm).
 
 | Dependency | Purpose | Installed by script |
 |---|---|---|
@@ -32,53 +112,88 @@ A personal Neovim configuration built on top of [Kickstart.nvim](https://github.
 | `git`, `gh` | Cloning and updating the config | Yes |
 | C compiler, `make` | Building Treesitter parsers and `telescope-fzf-native` | Yes |
 | `tree-sitter-cli` | Installing Treesitter parsers | Yes |
-| `nodejs`, `npm` | Mason-installed language servers | Yes |
-| `python3`, `pip` | Python language servers | Yes |
+| `nodejs`, `npm` | Mason-installed tools (Prettier, markdownlint, `ts_ls`, ...) | Yes |
+| `python3`, `pip` | Python tooling | Yes |
 | `ripgrep`, `fd` | Telescope live grep and file search | Yes |
 | `wl-clipboard` | System clipboard integration (Linux) | Yes |
-| `imagemagick`, `luarocks` | Magick bindings for `image.nvim` | Yes |
+| `imagemagick` | Image conversion for `image.nvim` | Yes |
 | JetBrains Mono Nerd Font | Icons in UI plugins | `--font` |
+
+Language servers, formatters and linters (`stylua`, `prettier`, `markdownlint`, `ruff`, and the servers listed above) are installed by Mason, so you do not need to install them yourself.
 
 ---
 
 ## Installation
-Installs the prerequisites, clones this config to `~/.config/nvim`, and syncs plugins.(Without font)
+
+The script installs the prerequisites, clones this config to `~/.config/nvim` (`$XDG_CONFIG_HOME` is respected), and runs `:Lazy restore` headlessly so plugins land on the exact commits in `lazy-lock.json`. First launch may take a moment while Mason and Treesitter finish downloading tools and parsers.
+
 ```sh
 curl -fsSL https://raw.githubusercontent.com/SaliqBashir/Neovim/main/install.sh | bash
 ```
 
-**Options**
+With JetBrainsMono Nerd Font:
 
-| Flag | Effect |
-|---|---|
-| `--font` | Also install JetBrainsMono Nerd Font |
-| `--no-config` | Install prerequisites only, leave `~/.config/nvim` alone |
-| `-v`, `--verbose` | Show full command output instead of one line per step |
-
-(With font)
 ```sh
 curl -fsSL https://raw.githubusercontent.com/SaliqBashir/Neovim/main/install.sh | bash -s -- --font
 ```
 
+| Flag | Effect |
+|---|---|
+| `--font` | Also install JetBrainsMono Nerd Font |
+| `--no-config` | Install prerequisites only; leave `~/.config/nvim` alone |
+| `-v`, `--verbose` | Show full command output instead of one line per step |
+| `-h`, `--help` | Show usage |
+
 **Safety**
 
-- Only missing packages are installed. Nothing already installed is upgraded, except Neovim if it is older than 0.11.
-- An existing `~/.config/nvim` is never overwritten. A clone of this repo is fast-forwarded; any other config is moved to `~/.config/nvim.bak.<timestamp>`.
+- Only missing packages are installed; nothing already installed is upgraded, except Neovim when it is older than 0.11.
+- An existing `~/.config/nvim` is never overwritten. A previous clone of this repo is fast-forwarded (any local change to `lazy-lock.json` is discarded first); any other config is moved to `~/.config/nvim.bak.<timestamp>`.
+- On Linux the script needs `sudo` (unless run as root). On macOS it needs Homebrew.
+
+<details>
+<summary><b>Manual install</b></summary>
+
+Install the prerequisites above, then:
+
+```sh
+git clone https://github.com/SaliqBashir/Neovim ~/.config/nvim
+nvim
+```
+
+`lazy.nvim` bootstraps itself on first launch and installs plugins at the commits recorded in `lazy-lock.json`.
+
+</details>
 
 ---
+
 ## Updating
+
+Re-running the installer updates an existing clone and re-syncs plugins to the lockfile. Or manually:
 
 ```sh
 cd ~/.config/nvim
+git checkout -- lazy-lock.json   # drop local lockfile changes so the pull can fast-forward
 git pull
 ```
 
 Then inside Neovim:
 
 ```vim
-:Lazy sync
+:Lazy restore
 :MasonUpdate
 :TSUpdate
+```
+
+`:Lazy restore` sets every plugin to the version in `lazy-lock.json`. To move plugins to their latest versions instead, run `:Lazy update`; that rewrites `lazy-lock.json` locally.
+
+---
+
+## Optional: Discord presence
+
+[Cord](https://github.com/vyfor/cord.nvim) shows the file and workspace you are editing in Discord. Because that shares file names, it is **off by default**. To enable it, set `NVIM_DISCORD=1` in your environment:
+
+```sh
+export NVIM_DISCORD=1   # e.g. in ~/.zshrc or ~/.bashrc
 ```
 
 ---
@@ -88,10 +203,11 @@ Then inside Neovim:
 ```
 .
 ├── init.lua                    -- Entry point: options, keymaps, plugin specs
+├── install.sh                  -- Bootstrap script
 ├── lazy-lock.json              -- Pinned plugin versions
 ├── lua/
 │   ├── custom/
-│   │   └── plugins/            -- User-added plugins
+│   │   └── plugins/            -- User-added plugins (auto-imported)
 │   │       ├── autotag.lua
 │   │       ├── cord.lua
 │   │       ├── gruvbox.lua
@@ -102,12 +218,14 @@ Then inside Neovim:
 │       ├── health.lua
 │       └── plugins/
 │           ├── autopairs.lua
-│           ├── debug.lua
-│           ├── gitsigns.lua
+│           ├── debug.lua       -- Not enabled by default
+│           ├── gitsigns.lua    -- Hunk keymaps (<leader>g)
 │           ├── indent_line.lua
 │           ├── lint.lua
 │           └── neo-tree.lua
 ├── doc/
+├── .stylua.toml
+├── LICENSE.md
 └── README.md
 ```
 
@@ -115,106 +233,106 @@ Then inside Neovim:
 
 ## Keymaps
 
-### Modes
+`<leader>` is `Space`. Press it and wait: `which-key` lists everything available.
+
+### General
+
+| Key | Mode | Action |
+|---|---|---|
+| `jj` | Insert | Return to Normal mode |
+| `i` | Normal | Remapped to `a` (insert after the cursor) |
+| `<D-CR>` | Insert | Jump to end of line and keep typing (Cmd+Enter) |
+| `t` | Normal | Redo |
+| `<Esc>` | Normal | Clear search highlight |
+| `<Esc><Esc>` | Terminal | Exit terminal mode |
+| `<leader>h` / `j` / `k` / `l` | Normal | Focus left / lower / upper / right window |
+| `<leader>f` | Normal / Visual | Format buffer |
+| `<leader>q` | Normal | Diagnostics to location list |
+
+Modified file buffers are written automatically on `InsertLeave` and `TextChanged`.
+
+### Search (Telescope)
 
 | Key | Action |
 |---|---|
-| `i` | Enter Insert mode |
-| `v` | Enter Visual mode |
-| `jj` | Return to Normal mode |
+| `<leader>sf` | Find files |
+| `<leader>sg` | Live grep |
+| `<leader>sw` | Grep word under cursor / selection |
+| `<leader>sd` | Diagnostics |
+| `<leader>sr` | Resume last picker |
+| `<leader>s.` | Recent files |
+| `<leader>s/` | Live grep in open files |
+| `<leader>sn` | Find Neovim config files |
+| `<leader>sh` / `sk` / `sc` / `ss` | Help tags / keymaps / commands / pickers |
+| `<leader>/` | Fuzzy search in current buffer |
+| `<leader><leader>` | Open buffers |
 
-### Movement
+### LSP
 
-**Character & Word**
-
-| Key | Action |
-|---|---|
-| `h` / `j` / `k` / `l` | Left / Down / Up / Right |
-| `w` | Jump to next word |
-| `b` | Jump to previous word |
-
-**Line Navigation**
-
-| Key | Action |
-|---|---|
-| `0` | Beginning of line |
-| `$` | End of line |
-
-**File Navigation**
+Active when a language server attaches to the buffer.
 
 | Key | Action |
 |---|---|
-| `gg` | First line of file |
-| `G` | Last line of file |
+| `K` | Hover documentation |
+| `grn` | Rename |
+| `gra` | Code action (Normal / Visual) |
+| `grd` | Go to definition |
+| `grD` | Go to declaration |
+| `gri` | Go to implementation |
+| `grt` | Go to type definition |
+| `grr` | References |
+| `gO` / `gW` | Document / workspace symbols |
+| `<leader>th` | Toggle inlay hints (when supported) |
 
-**Paragraph Navigation**
-
-| Key | Action |
-|---|---|
-| `{` | Previous paragraph |
-| `}` | Next paragraph |
-
-### Editing
-
-**Yank**
-
-| Key | Action |
-|---|---|
-| `yy` | Yank current line |
-| `yap` | Yank around paragraph |
-| `[count]yk` | Yank `count` lines above |
-
-**Delete**
+### Completion (`blink.cmp`)
 
 | Key | Action |
 |---|---|
-| `dd` | Delete current line |
-| `dap` | Delete around paragraph |
-| `[count]dk` | Delete `count` lines above |
+| `<Tab>` / `<S-Tab>` | Select next / previous item |
+| `<CR>` | Accept |
 
-**Paste**
+Remaining bindings follow blink's `default` preset.
 
-| Key | Action |
-|---|---|
-| `p` | Paste below |
-| `P` | Paste above |
+### Git (Gitsigns)
 
-**Undo**
+A hunk is a contiguous block of changed lines relative to the git index. Gutter signs: `+` added, `~` changed, `_` deleted, `‾` deleted at top of file.
 
-| Key | Action |
-|---|---|
-| `u` | Undo |
+| Key | Mode | Action |
+|---|---|---|
+| `]c` / `[c` | Normal | Next / previous hunk |
+| `<leader>gp` | Normal | Preview hunk (floating diff) |
+| `<leader>gi` | Normal | Preview hunk inline |
+| `<leader>gs` | Normal / Visual | Stage or unstage hunk (Visual: selected lines only) |
+| `<leader>gr` | Normal / Visual | Reset hunk (Visual: selected lines only) |
+| `<leader>gS` | Normal | Stage buffer |
+| `<leader>gR` | Normal | Reset buffer |
+| `<leader>gb` | Normal | Blame line (full) |
+| `<leader>gd` | Normal | Diff against index |
+| `<leader>gD` | Normal | Diff against last commit |
+| `<leader>gq` | Normal | Hunks in this file to quickfix |
+| `<leader>gQ` | Normal | Hunks in the whole repo to quickfix |
+| `<leader>tb` | Normal | Toggle inline blame |
+| `<leader>tw` | Normal | Toggle word diff |
+| `ih` | Operator / Visual | Select hunk (e.g. `dih` deletes it, `vih` selects it) |
 
-### Visual Mode
-
-| Key | Action |
-|---|---|
-| `v` | Start character selection |
-| `V` | Start line selection |
-| `<movement>` | Extend selection |
-
-### Windows
-
-| Key | Action |
-|---|---|
-| `<leader>h` | Focus left window |
-| `<leader>j` | Focus lower window |
-| `<leader>k` | Focus upper window |
-| `<leader>l` | Focus right window |
+> The hunk keys live under `<leader>g`, not Kickstart's default `<leader>h`, because `<leader>h` is window navigation.
 
 ### Neo-tree
 
 | Key | Action |
 |---|---|
-| `<leader>e` | Toggle Neo-tree |
+| `<leader>e` | Toggle Neo-tree and reveal the current file (closes it when focused) |
 | `Enter` | Open file / expand or collapse directory |
 | `a` | Add file or directory (`/` suffix creates a directory) |
 | `r` | Rename |
 | `d` | Delete |
 | `m` | Move |
-| `.` | Toggle hidden files |
-| `R` | Refresh tree |
+| `c` | Copy |
+| `H` | Toggle hidden files |
+| `.` | Set directory as root |
 | `Backspace` | Go to parent directory |
+| `R` | Refresh tree |
+| `?` | Show all mappings |
 
 ### Harpoon
 
@@ -222,12 +340,50 @@ Quick-access file list for jumping between actively edited files without a fuzzy
 
 | Key | Action |
 |---|---|
-| `<leader>a` | Add current file to Harpoon list |
+| `<leader>a` | Add current file to the Harpoon list |
 | `<leader>r` | Toggle Harpoon quick menu |
-| `<leader>1` | Jump to file 1 |
-| `<leader>2` | Jump to file 2 |
-| `<leader>3` | Jump to file 3 |
-| `<leader>4` | Jump to file 4 |
+| `<leader>1` – `<leader>4` | Jump to file 1 – 4 |
+
+### Which-key groups
+
+| Prefix | Group |
+|---|---|
+| `<leader>s` | Search |
+| `<leader>t` | Toggle |
+| `<leader>g` | Git (Normal / Visual) |
+| `gr` | LSP actions |
+
+<details>
+<summary><b>Vim basics cheat sheet</b></summary>
+
+**Modes**
+
+| Key | Action |
+|---|---|
+| `i` | Insert mode (remapped here, see above) |
+| `v` / `V` | Character / line Visual mode |
+
+**Movement**
+
+| Key | Action |
+|---|---|
+| `h` `j` `k` `l` | Left / Down / Up / Right |
+| `w` / `b` | Next / previous word |
+| `0` / `$` | Start / end of line |
+| `gg` / `G` | First / last line |
+| `{` / `}` | Previous / next paragraph |
+
+**Editing**
+
+| Key | Action |
+|---|---|
+| `yy` / `dd` | Yank / delete line |
+| `yap` / `dap` | Yank / delete around paragraph |
+| `[count]yk` / `[count]dk` | Yank / delete `count` lines above |
+| `p` / `P` | Paste below / above |
+| `u` | Undo |
+
+</details>
 
 ---
 
@@ -244,3 +400,7 @@ Quick-access file list for jumping between actively edited files without a fuzzy
 | `:qa!` | Force quit all |
 
 ---
+
+## License
+
+See [LICENSE.md](LICENSE.md).
