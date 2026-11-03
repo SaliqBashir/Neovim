@@ -207,7 +207,7 @@ require('lazy').setup({
       spec = {
         { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
         { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } }, -- requires gitsigns recommended keymaps
+        { '<leader>g', group = '[G]it', mode = { 'n', 'v' } }, -- hunk keymaps from kickstart.plugins.gitsigns
         { 'gr', group = 'LSP Actions', mode = { 'n' } },
       },
     },
@@ -631,7 +631,7 @@ require('lazy').setup({
   require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommended keymaps
+  require 'kickstart.plugins.gitsigns', -- hunk keymaps under <leader>g (<leader>h is window navigation)
 
   -- Custom plugins are imported from lua/custom/plugins/*.lua
   { import = 'custom.plugins' },

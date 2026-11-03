@@ -147,7 +147,7 @@ pkgs_apt() {
     git build-essential unzip curl ca-certificates xz-utils \
     ripgrep fd-find nodejs npm \
     python3 python3-pip python3-venv wl-clipboard \
-    imagemagick libmagickwand-dev luarocks
+    imagemagick
   link_fd
 }
 
@@ -158,7 +158,7 @@ pkgs_pacman() {
     neovim git github-cli gcc make unzip curl \
     ripgrep fd tree-sitter tree-sitter-cli \
     nodejs npm python python-pip wl-clipboard \
-    imagemagick luarocks
+    imagemagick
 }
 
 pkgs_dnf() {
@@ -166,7 +166,7 @@ pkgs_dnf() {
     neovim git gh gcc gcc-c++ make unzip curl xz \
     ripgrep fd-find nodejs npm \
     python3 python3-pip wl-clipboard \
-    ImageMagick ImageMagick-devel luarocks
+    ImageMagick
   link_fd
 }
 
@@ -174,7 +174,7 @@ pkgs_brew() {
   # Only install what is missing; never upgrade or clean up unrelated formulae.
   export HOMEBREW_NO_ENV_HINTS=1 HOMEBREW_NO_INSTALL_CLEANUP=1 HOMEBREW_NO_INSTALL_UPGRADE=1
   local missing=() pair
-  for pair in git:git gh:gh ripgrep:rg fd:fd tree-sitter-cli:tree-sitter node:node python:python3 imagemagick:magick luarocks:luarocks; do
+  for pair in git:git gh:gh ripgrep:rg fd:fd tree-sitter-cli:tree-sitter node:node python:python3 imagemagick:magick; do
     have "${pair#*:}" || missing+=("${pair%%:*}")
   done
   have nvim || missing+=(neovim)

@@ -3,8 +3,8 @@
 return {
   {
     '3rd/image.nvim',
-    dependencies = { 'vhyrro/luarocks.nvim' }, -- needed for magick bindings
     opts = {
+      processor = 'magick_cli',
       backend = 'kitty',
       integrations = {
         markdown = {
