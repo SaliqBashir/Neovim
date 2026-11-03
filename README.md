@@ -30,14 +30,14 @@ curl -fsSL https://raw.githubusercontent.com/SaliqBashir/Neovim/main/install.sh 
     <td width="50%">
       <strong>Editor Workspace</strong>
       <br/>
-      <img src="https://private-user-images.githubusercontent.com/134050177/693587107-477ad2a9-4fc2-4977-aa47-703f49f5fc72.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTA3LTQ3N2FkMmE5LTRmYzItNDk3Ny1hYTQ3LTcwM2Y0OWY1ZmM3Mi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wMjRjOTRmZDUxMzMwYTc4MTMzN2ViMzg5MjE0ZGEzOTc1YzJmMmZjNWJlNTc3OWY0MjFhNjUwMDczYzNiYTRlJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.-VgKrcrsWdqZONjoNz71DtperjmKr478R8KNpgKu6uQ" width="100%" />
+      <img src="https://cdn.saliqbashir.me/default_view.png" width="100%" />
       <br/>
       <sub>Neovim layout with Neo-tree.</sub>
     </td>
     <td width="50%">
       <strong>Telescope</strong>
       <br/>
-      <img src="https://private-user-images.githubusercontent.com/134050177/693587103-2dd88f31-cdc0-4df9-9345-d11030efec16.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTAzLTJkZDg4ZjMxLWNkYzAtNGRmOS05MzQ1LWQxMTAzMGVmZWMxNi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02ODIzNTYwZDRjNWE5ZDY3ZTE2YTgwYzcxMTIxNjYyYWZlOGZiYWJiZDkwNTliODhkZWFhYjQ4ZmZkMzFjNzZiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.PM_Jg7OVUTQsxVn0_nD1bWbZFGKo3ttZN9DpFl1FX_k" width="100%" />
+      <img src="https://cdn.saliqbashir.me/telescope.png" width="100%" />
       <br/>
       <sub>Fuzzy file finding with live preview and project navigation.</sub>
     </td>
@@ -46,14 +46,14 @@ curl -fsSL https://raw.githubusercontent.com/SaliqBashir/Neovim/main/install.sh 
     <td width="50%">
       <strong>LSP Integration</strong>
       <br/>
-      <img src="https://private-user-images.githubusercontent.com/134050177/693587106-f33df460-f984-47a1-8ff3-8684a74edbd2.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTA2LWYzM2RmNDYwLWY5ODQtNDdhMS04ZmYzLTg2ODRhNzRlZGJkMi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT01Y2Y4M2FmNzE1MDA0ZGFiMjg4ZGIxM2E1OTQ1ZWZmZjY2YzVkZmQzZDU2NzMyYmNiZmRiOGY3NTJhM2VjYTliJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.Cs3LM5cWTt_kUYFYFoaI-lXV2iiJMmBUbr27o40CpQ8" width="100%" />
+      <img src="https://cdn.saliqbashir.me/lsp.png" width="100%" />
       <br/>
       <sub>Hover documentation, diagnostics and language intelligence.</sub>
     </td>
     <td width="50%">
       <strong>Which-key</strong>
       <br/>
-      <img src="https://private-user-images.githubusercontent.com/134050177/693587109-4a4a3c25-1aa2-4c1f-8d34-dccd78640805.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTA5LTRhNGEzYzI1LTFhYTItNGMxZi04ZDM0LWRjY2Q3ODY0MDgwNS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xN2E5ZTg1NWNjMjdjYTk0MTA4YmU1NjUzMTVjYmViZTM1Mzk3ZjQ4MmI1MDUwOWM4YjNjYTM1YTQ2ZTJjNzlmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.1bbBjzJiZZcpYRTZcmu9Ow4hsNtNLPxF7gZcwgBpukM" width="100%" />
+      <img src="https://cdn.saliqbashir.me/menu.png" width="100%" />
       <br/>
       <sub>Discoverable keybindings and grouped shortcuts.</sub>
     </td>
@@ -62,14 +62,14 @@ curl -fsSL https://raw.githubusercontent.com/SaliqBashir/Neovim/main/install.sh 
     <td width="50%">
       <strong>Git Integration</strong>
       <br/>
-      <img src="https://private-user-images.githubusercontent.com/134050177/693587108-af0533b8-a55c-4e80-a7c7-24ec855ef851.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTA4LWFmMDUzM2I4LWE1NWMtNGU4MC1hN2M3LTI0ZWM4NTVlZjg1MS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04NWFjNTJhMGVjZmMwMzBhNmJlOGFjNzU5N2FhMTQ0ZmJlNDAxNGMzNjRlYWI1YzRiYjc2MzNiYmMzYzYxYTlmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.Y62lACBm6YNwCNWeBY5c3amyJvKs6CAGIGn78Iw2aZ4" width="100%" />
+      <img src="https://cdn.saliqbashir.me/git_hunk.png" width="100%" />
       <br/>
       <sub>Gitsigns hunk preview with inline change visualization.</sub>
     </td>
     <td width="50%">
       <strong>Inline Image Rendering</strong>
       <br/>
-      <img src="https://private-user-images.githubusercontent.com/134050177/693587104-a258a9df-78be-4db5-a495-2307e41b9dcf.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTM3MTY2MzgsIm5iZiI6MTc5MzcxNjMzOCwicGF0aCI6Ii8xMzQwNTAxNzcvNjkzNTg3MTA0LWEyNThhOWRmLTc4YmUtNGRiNS1hNDk1LTIzMDdlNDFiOWRjZi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMTAzJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTEwM1QxNDMyMThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1kYTBlNGEzMjFjMmU5MmZlYzMwZDNjNjQ1YzdlODM5MDBmOTVkYzM4YjI5Yzk1M2YxYzU5ZmRmZjNiMDI1MjA3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.yHoH2uw4UhmVBky9PtPXaTDyYoSUbxN9sbe4nCgMHJ0" width="100%" />
+      <img src="https://cdn.saliqbashir.me/image.png" width="100%" />
       <br/>
       <sub>Image rendering directly inside Neovim using the Kitty graphics protocol.</sub>
     </td>
