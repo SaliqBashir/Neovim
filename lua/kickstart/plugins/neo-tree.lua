@@ -13,7 +13,7 @@ return {
   },
   lazy = false,
   keys = {
-    { '<leader>e', "<cmd>Neotree toggle reveal<CR>", desc = 'NeoTree reveal', silent = true },
+    { '<leader>e', '<cmd>Neotree toggle reveal<CR>', desc = 'NeoTree reveal', silent = true },
   },
   ---@module 'neo-tree'
   ---@type neotree.Config

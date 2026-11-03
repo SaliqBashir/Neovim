@@ -596,12 +596,17 @@ require('lazy').setup({
         end,
       })
 
-      vim.keymap.set('n', '<leader>/', function()
-        builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        })
-      end, { desc = '[/] Fuzzily search in current buffer' })
+      vim.keymap.set(
+        'n',
+        '<leader>/',
+        function()
+          builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+            winblend = 10,
+            previewer = false,
+          })
+        end,
+        { desc = '[/] Fuzzily search in current buffer' }
+      )
 
       vim.keymap.set(
         'n',
@@ -638,7 +643,6 @@ require('lazy').setup({
   --
   -- See `:help lazy.nvim-🔌-plugin-spec`, or `<leader>sh` then `lazy.nvim-plugin`
   -- (resume with `<leader>sr`).
-
 }, { ---@diagnostic disable-line: missing-fields
   ui = {
     -- With a Nerd Font, use lazy.nvim's default icons; otherwise use unicode fallbacks
