@@ -108,10 +108,15 @@ vim.keymap.set('n', '<leader>k', '<C-w><C-k>', { desc = 'Move focus to the upper
 -- =========================================================================
 -- See `:help lua-guide-autocommands`
 
--- Auto-save on leaving insert mode or when text changes
+-- Auto-save on leaving insert mode or when text changes (real, modifiable, named file buffers only)
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged' }, {
-  pattern = '*',
-  command = 'silent! write',
+  group = vim.api.nvim_create_augroup('autosave', { clear = true }),
+  callback = function(ev)
+    local buf = ev.buf
+    if vim.bo[buf].modifiable and vim.bo[buf].modified and vim.bo[buf].buftype == '' and vim.api.nvim_buf_get_name(buf) ~= '' then
+      vim.api.nvim_buf_call(buf, function() vim.cmd 'silent! update' end)
+    end
+  end,
 })
 
 -- Diagnostic display config (`:help vim.diagnostic.Opts`)
@@ -367,9 +372,8 @@ require('lazy').setup({
       local servers = {
         clangd = {},
         pyright = {},
+        ruff = {},
         ts_ls = {},
-        stylua = {}, -- Lua formatter
-        pylsp = {},
         html = {},
         cssls = {},
         emmet_language_server = {
@@ -412,7 +416,9 @@ require('lazy').setup({
       -- Install/enable each configured server via mason-tool-installer
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        -- additional Mason-installed tools can go here
+        'stylua', -- Lua formatter (used by conform)
+        'prettier', -- JS/TS formatter (used by conform)
+        'markdownlint', -- Markdown linter (used by nvim-lint)
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -459,6 +465,7 @@ require('lazy').setup({
         lsp_format = 'fallback',
       },
       formatters_by_ft = {
+        lua = { 'stylua' },
         javascript = { 'prettier' },
         typescript = { 'prettier' },
         javascriptreact = { 'prettier' },
